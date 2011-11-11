@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Siri</title>
+  
+  <script type='text/javascript' src='http://code.jquery.com/jquery-1.7.js'></script>
+  
+  <link rel="stylesheet" type="text/css" href="normalize.css">
+  
+  <style type='text/css'>
+    body {background-image:url(http://jsonenglish.com/sandbox/beaker/matte.png);}
+
+.siri {width:250px;height:250px;cursor:pointer;display:block;margin:0 auto;margin-top:100px;overflow:hidden;background-color:transparent;position:relative;border:none;}
+.siri .brapper {width:200px;height:200px;margin:0 auto;margin-top:25px;position:relative;border-radius:500px;cursor:pointer;}
+/*.siri .glare {width:0;height:0;border-left:15px solid green;border-top:15px solid red;border-right:25px solid transparent;border-bottom:25px solid transparent;position:absolute;left:0;top:0;z-index:30;-webkit-border-top-left-radius:20px;}*/
+.siri .back {z-index:1;position:absolute;left:0px;top:0px;height:0px;width:200px;height:200px;border-radius:500px;background-color:#CCC;border:0;margin:0;padding:0;box-shadow:1px 1px 10px #000;}
+.siri #pulse {position:absolute;z-index:1200;top:0;left:0;}
+.siri #mic {position:absolute;z-index:1400;left:81px;top:35px;}
+.siri .ring {z-index:2;position:absolute;left:6px;top:6px;border:6px solid #333;width:88%;height:88%;border-radius:500px;margin:0 auto;}
+.siri .ring:before {content:""} /* awesome */
+/* have to figure out to make widths, positioning and scaling work better */
+.siri .inner-circle {width:86%;height:86%;border-radius:500px;margin:0 auto;border:1px solid #f8f8f8;background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), color-stop(.5, rgba(0, 0, 0, .1)),color-stop(.6, transparent),to(rgba(158,156,158, 0)));
+    position:absolute;left:13px;top:13px;z-index:5;box-shadow:0px 0px 5px #666;
+-webkit-transform-origin:50% 50%;-webkit-transform:rotate(45deg);
+}
+.siri .white-highlight {width:86%;height:86%;border-radius:500px;margin:0 auto;border:1px solid #f8f8f8;background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), color-stop(.5, rgba(255, 255, 255, .3)),color-stop(.6, transparent),to(rgba(255,255,255, 0)));
+    position:absolute;left:13px;top:13px;z-index:8;
+-webkit-transform-origin:50% 50%;-webkit-transform:rotate(45deg);
+    display:none;
+}
+.siri .ic2 {-webkit-transform:rotate(55deg);z-index:6;}
+.siri .ic3 {-webkit-transform:rotate(65deg);z-index:7;}
+.siri .wh1 {-webkit-transform:rotate(120deg);z-index:8;}
+.siri .wh2 {-webkit-transform:rotate(135deg);z-index:9;}
+.siri .inner-circle:after, .siri .inner-circle:before {-webkit-transform-origin:50% 50%;-webkit-transform:rotate(45deg);}
+.siri .base{position:absolute;bottom:40px;left:81px;width:40px;height:8px;background-color:#333;z-index:10;}
+.siri .stem{position:absolute;bottom:48px;left:97px;width:8px;height:25px;background-color:#333;z-index:10;}
+.siri .u {position:absolute;z-index:10;left:67px;top:80px;border-left:8px solid #333;border-bottom:8px solid #333;border-right:8px solid #333;border-top:none;-webkit-border-bottom-left-radius:500px;-webkit-border-bottom-right-radius:500px;width:53px;height:40px;}
+.siri .mic {position:absolute;left:81px;top:35px;width:37px;height:78px;-webkit-border-radius:35px;background-color:#2b1757;z-index:10;border:1px solid #333;}
+.siri .holes {position:absolute;left:83px;top:35px;width:37px;height:78px;-webkit-border-radius:35px;z-index:15;}
+.siri .holes .hole {float:left;width:3px;height:2px;-webkit-border-radius:5px;background-color:#4d1a4c;margin-left:5px;}
+.siri .holes .left-padding {margin-left:9px;}
+.siri .holes .row {height:6px;}
+.siri .holes .row:nth-child(1) {margin-top:10px;}
+.siri .glare-bottom { z-index:999;position:absolute;width: 0; height: 0;border-top: 45px solid #CCC;border-left: 0px solid transparent; border-right: 35px solid transparent;opacity:0.4;top:54px;left:83px;
+}
+.siri .glare-top {width:35px;height:17px;-webkit-border-top-right-radius:40px;-webkit-border-top-left-radius:40px;background-color:#CCC;position:absolute;top:37px;left:83px;z-index:999;opacity:0.4;}
+
+
+
+/*.siri .holes .row:nth-child(1) .hole:nth-child(1) {visibility:hidden;}
+.siri .holes .row:nth-child(1) .hole:nth-child(2) {margin-left:4px;}
+
+
+-webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.1, rgb(204,204,204)),
+    color-stop(0.5, rgb(158,156,158)),
+    color-stop(0.9, rgb(204,204,204))
+);
+
+-webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), color-stop(.35, rgba(0, 0, 0, .1)), color-stop(.41, transparent), color-stop(.43, rgba(255, 255, 255, 0)), color-stop(.44, rgba(255, 255, 255, .4)), color-stop(.46, rgba(255, 255, 255, 0)), color-stop(.5, rgba(255, 255, 255, .85)), color-stop(.54, rgba(255, 255, 255, 0)), color-stop(.56, rgba(255, 255, 255, .4)), color-stop(.57, rgba(255, 255, 255, 0)), color-stop(.59, transparent), color-stop(.65, rgba(0, 0, 0, .1)), to(rgba(158,156,158, 0)))
+
+*/
+  </style>
+  
+
+
+<script type='text/javascript'>//<![CDATA[ 
+
+function Canvas(opts) {
+    
+    this.canvas;
+    var ctx;
+    var WIDTH;
+    var HEIGHT;
+    var PARENT;
+    
+    this.params = function() {return {"width":WIDTH,"height":HEIGHT,"ctx": ctx}}
+    
+    this.circle = function(x,y,r,c) {
+        ctx.beginPath();
+        ctx.fillStyle = c;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0
+        ctx.shadowBlur = 24;
+        ctx.shadowColor = "rgba(255,231,254,0.9)";
+        ctx.arc(x, y, r, 0, Math.PI*2, true); 
+        ctx.closePath();
+        ctx.fill();
+    }
+
+    this.clear = function() {
+        ctx.clearRect(0, 0, WIDTH, HEIGHT);
+        //ctx.width = WIDTH;
+    }
+    
+    function init() {
+        this.canvas = document.createElement("canvas");
+        ctx = this.canvas.getContext("2d");
+        this.canvas.id = opts.id;
+        this.canvas.width = opts.width;
+        this.canvas.height = opts.height;
+        WIDTH = opts.width;
+        HEIGHT = opts.height;
+        PARENT = opts.parent;
+        $(PARENT).append(this.canvas);
+    }
+    
+    init();
+}
+
+$(document).ready(function() {
+    var angle = 0, particle = 0, siriAnimating = false, opacity = 1,totalParticles = 80, drawTimer;
+    var colors = ["rgba(255,231,254,0.4)", "rgba(154,34,147,0.4)", "rgba(246,1,232,0.4)"];
+    function draw() {
+        var p = pulse.params();
+        if (!siriAnimating) {
+            opacity *= 0.90;
+            p.ctx.globalAlpha = opacity;
+            if (opacity <= 0.1) {
+                pulse.clear();
+                p.ctx.globalAlpha = 1;
+                clearTimeout(drawTimer);
+                opacity=1;
+                particle=0;
+                angle=0;
+                return;
+            }
+        }
+        
+        var acceleration = particle*.001;
+        p.ctx.globalCompositeOperation = 'lighter';
+        pulse.clear();
+        for(var segments = 0; segments <= particle+1; segments++) {      
+            x = p.width/2 + 91 * Math.cos((angle-(segments*0.01))*Math.PI)
+            y = p.height/2 + 91 * Math.sin((angle-(segments*0.01))*Math.PI)
+            var size = (!siriAnimating) ? 0.15 : 0.07;
+            //colors[~~Math.random()*(colors.length)]
+            pulse.circle(x,y,((particle+1)-segments)*size,colors[~~Math.random()*(colors.length)]);
+        }
+        if(particle<totalParticles){particle++;}
+        angle=angle<=2?((particle>30)?angle=angle+0.03:angle=angle+0.01+acceleration):0;
+        drawTimer = setTimeout(draw,10);
+    }
+    
+    function drawMicPulse() {
+        
+    }
+    
+    pulse = new Canvas({width:250,height:250,id:"pulse",parent:".siri"});
+    mic = new Canvas({width:67,height:108,id:"mic",parent:".siri .brapper"});
+    
+    $(".siri").click(function() {
+        if (siriAnimating) {
+            siriAnimating = false;
+        } else {
+            siriAnimating=true;
+            draw();
+        } 
+    });
+});
+
+//]]>  
+
+</script>
+
+
+</head>
+<body>
+  <div class="siri">
+    <div class="brapper">
+        <div class="ring"></div>
+        <div class="inner-circle"></div>
+        <div class="inner-circle ic2"></div>
+        <div class="inner-circle ic3"></div>
+        <div class="white-highlight wh1"></div>
+        <div class="white-highlight wh2"></div>
+        <div class="white-highlight wh3"></div>
+        <div class="glare-top"></div>
+        <div class="glare-bottom"></div>
+        <div class="holes">
+            <div class="row">
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+            </div>
+            <div class="row">
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+            </div>
+            <div class="row">
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+            </div>
+            <div class="row">
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+            </div>
+            <div class="row">
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+            </div>
+            <div class="row">
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+            </div>
+            <div class="row">
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+            </div>
+            <div class="row">
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+            </div>
+            <div class="row">
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+            </div>
+            <div class="row">
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+            </div>
+        </div>
+        <div class="u"></div>
+        <div class="stem"></div>
+        <div class="base"></div>
+        <div class="mic"></div>
+        <div class="back"></div>
+    </div>
+</div>
+
+  
+</body>
+
+
+</html>
+

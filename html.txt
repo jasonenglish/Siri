@@ -1,0 +1,80 @@
+<div class="siri">
+    <div class="brapper">
+        <div class="ring"></div>
+        <div class="inner-circle"></div>
+        <div class="inner-circle ic2"></div>
+        <div class="inner-circle ic3"></div>
+        <div class="white-highlight wh1"></div>
+        <div class="white-highlight wh2"></div>
+        <div class="white-highlight wh3"></div>
+        <div class="glare-top"></div>
+        <div class="glare-bottom"></div>
+        <div class="holes">
+            <div class="row">
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+            </div>
+            <div class="row">
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+            </div>
+            <div class="row">
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+            </div>
+            <div class="row">
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+            </div>
+            <div class="row">
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+            </div>
+            <div class="row">
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+            </div>
+            <div class="row">
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+            </div>
+            <div class="row">
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+            </div>
+            <div class="row">
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+            </div>
+            <div class="row">
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+                <div class="hole"></div>
+            </div>
+        </div>
+        <div class="u"></div>
+        <div class="stem"></div>
+        <div class="base"></div>
+        <div class="mic"></div>
+        <div class="back"></div>
+    </div>
+</div>
